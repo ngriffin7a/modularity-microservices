@@ -1,0 +1,57 @@
+/**
+ * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.liferay.store.product.service.internal;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+
+import com.liferay.store.product.model.Product;
+import com.liferay.store.product.model.internal.ProductImpl;
+import com.liferay.store.product.service.ProductService;
+
+
+/**
+ * @author  Neil Griffin
+ */
+@Component(immediate = true, service = ProductService.class)
+public class ProductServiceImpl implements ProductService {
+
+	private List<Product> products;
+
+	@Activate
+	public void activate() {
+
+		products = new ArrayList<Product>();
+		products.add(new ProductImpl(1, "Keyboard", new BigDecimal("24.99")));
+		products.add(new ProductImpl(2, "Mouse", new BigDecimal("15.99")));
+		products.add(new ProductImpl(3, "Monitor", new BigDecimal("399.25")));
+		products.add(new ProductImpl(4, "Webcam", new BigDecimal("24.78")));
+		products.add(new ProductImpl(5, "USB Stick", new BigDecimal("7.99")));
+		products.add(new ProductImpl(6, "Wireless Router", new BigDecimal("57.69")));
+		products.add(new ProductImpl(7, "Smart Phone", new BigDecimal("399.95")));
+		products.add(new ProductImpl(8, "Bluetooth Speaker", new BigDecimal("79.99")));
+		products.add(new ProductImpl(9, "Tablet", new BigDecimal("153.45")));
+		products.add(new ProductImpl(10, "Smart Watch", new BigDecimal("199.99")));
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+}

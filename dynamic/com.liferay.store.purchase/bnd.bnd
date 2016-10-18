@@ -1,0 +1,3 @@
+-exportcontents: \
+	com.liferay.store.purchase.model, \
+	com.liferay.store.purchase.service

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:alloy="http://liferay.com/faces/alloy" >
+	<h:head />
+	<h:body>
+		<alloy:form>
+			<alloy:field label="Customer">
+				<alloy:selectOneMenu style="display:block;" value="#{storeBacking.selectedCustomerId}">
+					<f:selectItem noSelectionOption="true" />
+					<f:selectItems itemLabel="#{customer.firstName} #{customer.lastName}"
+								   itemValue="#{customer.customerId}"
+								   value="#{storeBacking.customers}" var="customer" />
+					<f:ajax render="purchases" />
+
+				</alloy:selectOneMenu>
+			</alloy:field>
+		</alloy:form>
+		<alloy:dataTable id="purchases"  value="#{storeBacking.purchases}" var="purchase">
+			<f:facet name="header">
+				<alloy:outputText value="Purchases" />
+			</f:facet>
+			<alloy:column headerText="Product">
+				<alloy:outputText value="#{purchase.product.description}" />
+			</alloy:column>
+			<alloy:column headerText="Quantity">
+				<alloy:outputText value="#{purchase.quantity}" />
+			</alloy:column>
+			<alloy:column headerText="Price">
+				<alloy:outputText value="#{purchase.product.price}">
+					<f:convertNumber currencyCode="USD" type="currency" />
+				</alloy:outputText>
+			</alloy:column>
+		</alloy:dataTable>
+	</h:body>
+</f:view>

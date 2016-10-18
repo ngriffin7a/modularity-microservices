@@ -1,0 +1,3 @@
+-exportcontents: \
+	com.liferay.store.product.model, \
+	com.liferay.store.product.service
